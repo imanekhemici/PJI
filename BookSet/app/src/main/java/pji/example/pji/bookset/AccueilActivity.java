@@ -15,11 +15,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.sql.SQLException;
+import com.j256.ormlite.dao.Dao;
+
 import java.util.List;
 
-import pji.example.pji.implementation.Collection.Livres;
-import pji.example.pji.implementation.CollectionBdd.LivresDao;
+import pji.example.pji.implementation.Collection.Livre;
 import pji.example.pji.implementation.base.DatabaseManager;
 
 
@@ -35,7 +35,7 @@ public class AccueilActivity extends ActionBarActivity
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
-    private LivresDao LivresDaoClass;
+    private Dao<Livre, Integer> livresDaoClass;
     private List listLivres;
 
     @Override
@@ -51,20 +51,33 @@ public class AccueilActivity extends ActionBarActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
-
-        Livres livre = new Livres("9807654786","test");
         DatabaseManager.init(this);
-        this.LivresDaoClass = DatabaseManager.getInstance().getHelper().getLivresDao();
-        try {
-            this.LivresDaoClass.addData(livre);
-        } catch (SQLException e) {
-            System.out.println("error");
-            e.printStackTrace();
+        DatabaseManager manager = DatabaseManager.getInstance();
+        livresDaoClass = manager.getHelper().getLivreDao();
+        //Livre livre = new Livre("9807654786","test");
+        if( livresDaoClass == null){
+            TextView text = (TextView) findViewById(R.id.details);
+            text.setText("null");
+        }else {
+            TextView text = (TextView) findViewById(R.id.details);
+            text.setText("not null");
         }
-        listLivres = this.LivresDaoClass.findAll();
+/**
+            try {
+                livresDaoClass.addData(livre);
+            } catch (java.sql.SQLException e) {
+                e.printStackTrace();
+            }
+        listLivres = livresDaoClass.findAll();
 
-        TextView text = (TextView) findViewById(R.id.details);
-        text.setText(listLivres.get(0).toString());
+        if( listLivres == null){
+            TextView text = (TextView) findViewById(R.id.details);
+            text.setText("vide");
+        }else {
+            TextView text = (TextView) findViewById(R.id.details);
+            text.setText(listLivres.get(0).toString());
+        }
+*/
     }
     /** Called when the user clicks the Ajouter button */
     public void ajouterElement(View view) {

@@ -9,6 +9,9 @@ public class DatabaseManager {
 
     static private DatabaseManager instance;
 
+    private DatabaseBookSet bookSet;
+
+
     static public void init(Context context) {
         if(null==instance) {
             instance = new DatabaseManager(context);
@@ -19,13 +22,14 @@ public class DatabaseManager {
         return instance;
     }
 
-    private DatabaseBookSet helper;
 
     private DatabaseManager(Context context) {
-        helper = new DatabaseBookSet(context);
+        bookSet = new DatabaseBookSet(context);
     }
 
     public DatabaseBookSet getHelper() {
-        return helper;
+        return bookSet;
     }
+
+
 }

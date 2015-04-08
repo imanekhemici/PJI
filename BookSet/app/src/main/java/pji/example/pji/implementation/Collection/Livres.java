@@ -3,19 +3,13 @@ package pji.example.pji.implementation.Collection;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
-import java.util.List;
-
-import pji.example.pji.implementation.CollectionBdd.LivresDao;
-import pji.example.pji.implementation.TypeGenre.GenreLivre;
-import pji.example.pji.implementation.extra.Auteur;
 import pji.example.pji.implementation.extra.OuiNon;
-import pji.example.pji.implementation.extra.Personne;
 
 /**
  * Created by imane on 09/03/15.
  */
 
-@DatabaseTable(tableName = "Livres", daoClass = LivresDao.class)
+@DatabaseTable(tableName = "Livres")
 public class Livres extends Collection {
 
     /**
@@ -27,89 +21,90 @@ public class Livres extends Collection {
     /**
      * l'isbn_10 du livre
      */
-    @DatabaseField(canBeNull = true)
+    @DatabaseField(columnName = "isbn_10", canBeNull = true)
     private String isbn_10;
 
     /**
      * l'isbn 13 du livre
      */
-    @DatabaseField(canBeNull = true)
+    @DatabaseField(columnName = "isbn_13", canBeNull = true)
     private String isbn_13;
 
     /**
      * le titre du livre
      */
-    @DatabaseField(canBeNull = false)
+    @DatabaseField(columnName = "titre",canBeNull = false)
     private String titre;
 
     /**
      * la liste des auteurs du livre
      */
-    @DatabaseField(canBeNull = false, foreign = true, foreignAutoRefresh = true)
-    private List<Auteur> auteur;
+    @DatabaseField(columnName = "auteur",canBeNull = false, foreign = true, foreignAutoRefresh = true)
+    private String auteur;
 
     /**
      * la liste des genre du livre
      */
-    @DatabaseField(canBeNull = true, foreign = true, foreignAutoRefresh = true)
-    private List<GenreLivre> genre;
+    @DatabaseField(columnName = "genre",canBeNull = true, foreign = true, foreignAutoRefresh = true)
+    private String genre;
 
     /**
      * la langue dans la quelle le livre est écrit
      */
-    @DatabaseField(canBeNull = true)
+    @DatabaseField(columnName = "langue",canBeNull = true)
     private String langue;
 
     /**
      * l'éditeur du livre
      */
-    @DatabaseField(canBeNull = true)
+    @DatabaseField(columnName = "editeur",canBeNull = true)
     private String editeur;
 
     /**
      * l'état de lecture du livre
      */
 
-    @DatabaseField(canBeNull = true)
+    @DatabaseField(columnName = "lu",canBeNull = true)
     private OuiNon lu;
 
     /**
      * la note /5 du livre
      */
-    @DatabaseField(canBeNull = true)
+    @DatabaseField(columnName = "note",canBeNull = true)
     private int note;
 
     /**
      * le résumé du livre
      */
-    @DatabaseField(canBeNull = true)
+    @DatabaseField(columnName = "resume",canBeNull = true)
     private String resume;
 
     /**
      * l'état de possession du livre
      */
 
-    @DatabaseField(canBeNull = true)
+    @DatabaseField(columnName = "enPossession",canBeNull = true)
     private OuiNon enPossession;
 
     /**
      * la personne à qui le livre est prêté
      */
-    @DatabaseField(canBeNull = true)
-    private Personne prete;
+    //@DatabaseField(canBeNull = true)
+   // private Personne prete;
 
     /**
      * le livre est dans les favoris
      */
-    @DatabaseField(canBeNull = true)
+    @DatabaseField(columnName = "favori",canBeNull = true)
     private OuiNon favori;
 
+
+    public Livres() {}
     /**
      * le constructeur
      * @param isbn
      * @param titre
      */
-
     public Livres(String isbn, String titre){
         if (isbn.length() == 10){
             this.isbn_10 = isbn;
@@ -196,15 +191,15 @@ public class Livres extends Collection {
      * @param auteur l'auteur du livre
      */
 
-    public void setAuteur(Auteur auteur){
-        this.auteur.add(auteur);
+    public void setAuteur(String auteur){
+        this.auteur =auteur;
     }
 
     /**
      * quel(s) sont les ou  l'auteur(s) de ce livre
      * @return une chaine de caractère indiquant les ou l'auteur du livre
      */
-    public String getAuteur(){
+   /** public String getAuteur(){
         if (this.auteur.size()==1) {
             return this.auteur.get(0).toString();
         }
@@ -220,22 +215,22 @@ public class Livres extends Collection {
             return "non rensigne";
         }
 
-    }
+    }*/
 
     /**
      * renseigner le genre du livre
      * @param genre le genre du livre
      */
-    public void setGenre(GenreLivre genre){
+    public void setGenre(String genre){
 
-        this.genre.add(genre);
+        this.genre =genre;
     }
 
     /**
      * le livre est de quel(s) genre(s)
      * @return le genre du livre
      */
-    public String getGenre(){
+  /**  public String getGenre(){
         if (this.genre.size() == 1) {
             return this.genre.get(0).toString();
         }
@@ -251,7 +246,7 @@ public class Livres extends Collection {
             return "non renseigne";
         }
 
-    }
+    }*/
 
     /**
      * renseigner la langue dans laquelle ce livre est écrit
