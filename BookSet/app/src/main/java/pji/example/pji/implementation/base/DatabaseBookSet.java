@@ -6,18 +6,18 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
-import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
 import pji.example.pji.implementation.Collection.Livre;
+import pji.example.pji.implementation.CollectionBdd.LivreDaoImpl;
 
 public class DatabaseBookSet extends OrmLiteSqliteOpenHelper {
 
     private static final String DATABASE_NAME = "bookset.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 5;
 
-    private Dao<Livre,Integer> livresDao = null;
+    private LivreDaoImpl livresDao = null;
 
     public DatabaseBookSet(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -51,18 +51,25 @@ public class DatabaseBookSet extends OrmLiteSqliteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase arg0, ConnectionSource arg1, int oldVersion,
                           int newVersion) {
-        // TODO Auto-generated method stub
 
+        try {
+            TableUtils.dropTable(connectionSource, Livre.class, true);
+            TableUtils.createTable(connectionSource, Livre.class);
+
+        } catch (java.sql.SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     /** create the table livres
      *
      * @return
      */
-    public Dao<Livre, Integer> getLivreDao() {
+
+    public LivreDaoImpl getLivreDao() {
         if(null == livresDao) {
             try {
-                livresDao = getDao(Livre.class);
+                livresDao = new LivreDaoImpl(getConnectionSource());
             }catch(java.sql.SQLException e) {
                 e.printStackTrace();
             }
