@@ -1,9 +1,14 @@
 package pji.example.pji.bookset;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+
+import pji.example.pji.implementation.Collection.Livre;
 
 /**
  * Created by imane khemici on 22/03/15.
@@ -13,7 +18,7 @@ public class AjouterElementActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ajouter_element_activity);
+        setContentView(R.layout.ajouter_element_man_activity);
     }
 
     @Override
@@ -35,6 +40,22 @@ public class AjouterElementActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void suivant(View view){
 
+        EditText text = (EditText) findViewById(R.id.titre);
+        String titre = text.getText().toString();
+        text = (EditText) findViewById(R.id.auteur);
+        String auteur = text.getText().toString();
+        text = (EditText) findViewById(R.id.isbn);
+        String isbn = text.getText().toString();
+        text = (EditText) findViewById(R.id.genre);
+        String genre =  text.getText().toString();
+
+        Variable.livre = new Livre(titre,auteur,isbn,genre);
+
+
+        Intent intent = new Intent(this, AjoutElementSuiteActivity.class);
+        startActivity(intent);
+    }
 
 }

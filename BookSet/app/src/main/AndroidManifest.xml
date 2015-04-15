@@ -16,7 +16,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".AjouterActivity"
             android:label="@string/title_activity_ajouter_element"
@@ -32,6 +31,10 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="pji.example.pji.bookset.AjouterActivity" />
+        </activity>
+        <activity
+            android:name=".AjoutElementSuiteActivity"
+            android:label="@string/title_activity_ajout_element_suite" >
         </activity>
     </application>
 

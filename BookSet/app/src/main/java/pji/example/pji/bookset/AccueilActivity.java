@@ -13,13 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import java.sql.SQLException;
-import java.util.List;
-
-import pji.example.pji.implementation.Collection.Livre;
-import pji.example.pji.implementation.CollectionBdd.LivreDaoImpl;
 import pji.example.pji.implementation.base.DatabaseManager;
 
 
@@ -35,8 +29,6 @@ public class AccueilActivity extends ActionBarActivity
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
-    private LivreDaoImpl livresDaoClass;
-    private List listLivres;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,30 +43,9 @@ public class AccueilActivity extends ActionBarActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
+        //Initialisation de la base de données
         DatabaseManager.init(this);
-        DatabaseManager manager = DatabaseManager.getInstance();
-        livresDaoClass = manager.getHelper().getLivreDao();
-
-        try{
-
-        livresDaoClass.addData(new Livre("test","imane","9807654786","genre"));
-        livresDaoClass.addData(new Livre("test1","imane1","9807654786","genre"));
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        TextView text = (TextView) findViewById(R.id.details);
-
-            List<Livre> livre1 = livresDaoClass.findAll();
-
-
-
-            if(livre1 != null && livre1.size() > 0){
-                text.setText(livre1.get(0).getTitre()+" "+ livre1.size() );
-            }
-            else {
-                text.setText("vide");
-            }
 
     }
     /** Called when the user clicks the Ajouter button */
@@ -170,8 +141,7 @@ public class AccueilActivity extends ActionBarActivity
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_accueil, container, false);
-            return rootView;
+            return inflater.inflate(R.layout.fragment_accueil, container, false);
         }
 
         @Override
