@@ -13,7 +13,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import pji.example.pji.implementation.Collection.Livre;
 import pji.example.pji.implementation.base.DatabaseManager;
 
 
@@ -47,7 +55,9 @@ public class AccueilActivity extends ActionBarActivity
         //Initialisation de la base de données
         DatabaseManager.init(this);
 
+        afficherLivre();
     }
+
     /** Called when the user clicks the Ajouter button */
     public void ajouterElement(View view) {
         Intent intent = new Intent(this, AjouterActivity.class);
@@ -111,6 +121,54 @@ public class AccueilActivity extends ActionBarActivity
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    public void afficherLivre(){
+
+        //Recuperation de la liste des views
+        ListView vue = (ListView) findViewById(R.id.listLivre);
+
+
+        List<Livre> livres = DatabaseManager.getInstance().getHelper().getLivreDao().findAll();
+        List<HashMap<String, String>> liste = new ArrayList<HashMap<String, String>>();
+        HashMap<String, String> element;
+
+        if(livres.isEmpty()){
+
+
+
+        }
+        else{
+            //Pour chaque personne dans notre répertoire…
+
+
+
+            for(Livre livre : livres) {
+
+                element = new HashMap<String, String>();
+
+                element.put("titre", livre.getTitre());
+                element.put("auteur", livre.getAuteur());
+                liste.add(element);
+
+            }
+
+
+
+        }
+
+
+
+
+        ListAdapter adapter = new SimpleAdapter(this, liste, R.layout.afficher_livre,
+                new String[] {"titre", "auteur"},
+                new int[] {R.id.titreaff, R.id.auteuraff });
+
+        //Pour finir, on donne à la ListView le SimpleAdapter
+
+        vue.setAdapter(adapter);
+
     }
 
     /**

@@ -3,6 +3,7 @@ package pji.example.pji.implementation.Collection;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import pji.example.pji.implementation.CollectionBdd.LivreDaoImpl;
@@ -11,7 +12,7 @@ import pji.example.pji.implementation.CollectionBdd.LivreDaoImpl;
  * Created by imane khemici on 01/04/15.
  */
 @DatabaseTable(tableName = "livre", daoClass = LivreDaoImpl.class)
-public class Livre {
+public class Livre implements Serializable{
 
     public Livre() {}
     public Livre(String titre, String auteur, String isbn, String genre) {
@@ -138,6 +139,13 @@ public class Livre {
         this.prete = prete;
     }
 
+    public String getLangue() {
+        return langue;
+    }
+
+    public void setLangue(String langue) {
+        this.langue = langue;
+    }
     /** A/D
      *
      */
@@ -170,5 +178,8 @@ public class Livre {
     private String emprunte;
     @DatabaseField (columnName = "prete", canBeNull = true)
     private String prete;
+    @DatabaseField (columnName = "langue", canBeNull = true)
+    private String langue;
+
 
 }

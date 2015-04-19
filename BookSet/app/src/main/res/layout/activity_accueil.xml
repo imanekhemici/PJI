@@ -106,11 +106,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/listLivre"
-            android:layout_alignRight="@+id/article"
-            android:layout_alignEnd="@+id/article"
-            android:layout_toEndOf="@+id/bd"
+            android:layout_below="@+id/bd"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:layout_above="@+id/searchView" />
 
     </RelativeLayout>
 

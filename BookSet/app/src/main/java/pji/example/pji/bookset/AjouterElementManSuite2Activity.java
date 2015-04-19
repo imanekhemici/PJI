@@ -10,21 +10,20 @@ import android.widget.EditText;
 
 import pji.example.pji.implementation.Collection.Livre;
 
-/**
- * Created by imane khemici on 22/03/15.
- */
-public class AjouterElementActivity extends ActionBarActivity {
+
+public class AjouterElementManSuite2Activity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ajouter_element_man_activity);
+        setContentView(R.layout.activity_ajouter_element_man_suite2);
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.ajouter_element, menu);
+        getMenuInflater().inflate(R.menu.menu_ajouter_element_man_suite2, menu);
         return true;
     }
 
@@ -34,29 +33,34 @@ public class AjouterElementActivity extends ActionBarActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 
-    public void suivant(View view){
+    public void suiteMan(View view){
 
-        EditText text = (EditText) findViewById(R.id.titre);
-        String titre = text.getText().toString();
-        text = (EditText) findViewById(R.id.auteur);
-        String auteur = text.getText().toString();
-        text = (EditText) findViewById(R.id.isbn);
-        String isbn = text.getText().toString();
-        text = (EditText) findViewById(R.id.genre);
-        String genre =  text.getText().toString();
+        Livre livre = (Livre)getIntent().getSerializableExtra("livre1");
 
-        Livre livre = new Livre(titre,auteur,isbn,genre);
+        EditText emprunte = (EditText)findViewById(R.id.emprunte);
+        String emprunte_s = emprunte.getText().toString();
 
+        livre.setEmprunte(emprunte_s);
 
-        Intent intent = new Intent(this, AjoutElementSuiteActivity.class);
-        intent.putExtra("livre",livre);
+        EditText prete = (EditText)findViewById(R.id.prete);
+        String prete_s = prete.getText().toString();
+
+        livre.setPrete(prete_s);
+
+        Intent intent = new Intent(this, ConfirmationAjout.class);
+        intent.putExtra("livre2",livre);
+
         startActivity(intent);
-    }
 
+
+    }
 }

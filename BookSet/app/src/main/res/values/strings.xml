@@ -26,4 +26,7 @@
         <string name="title_activity_ajout_element_suite">ajoutElementSuite</string>
 
     <string name="hello_world">Hello world!</string>
+        <string name="title_activity_ajouter_element_man_suite2">ajouter_element_man_suite2</string>
+        <string name="title_activity_confirmation_ajout">ConfirmationAjout</string>
+        <string name="title_activity_confirmation">Confirmation</string>
 </resources>

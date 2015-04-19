@@ -41,6 +41,19 @@ public class LivreDaoImpl extends BaseDaoImpl<Livre,Integer> implements  LivreDa
                 ;
     }
 
+    public Livre findByTitle(String titre){
+        Livre livre = null;
+        List<Livre> all = null;
+        all =  findAll();
+        for(Livre livre1 : all){
+            if(livre1.getTitre().equals(titre)){
+                livre = livre1;
+            }
+
+        }
+        return livre;
+
+    }
     public int addData(Livre livre) throws SQLException {
         return this.create(livre);
     }
