@@ -6,24 +6,21 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
-
-import pji.example.pji.implementation.Collection.Livre;
 
 
-public class AjouterElementManSuite2Activity extends ActionBarActivity {
+public class RechercheChoixActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ajouter_element_man_suite2);
+        setContentView(R.layout.activity_recherche_choix);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_ajouter_element_man_suite2, menu);
+        getMenuInflater().inflate(R.menu.menu_recherche_choix, menu);
         return true;
     }
 
@@ -41,31 +38,8 @@ public class AjouterElementManSuite2Activity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-    public void suiteMan(View view){
-
-        Livre livre = (Livre)getIntent().getSerializableExtra("livre1");
-
-        EditText emprunte = (EditText)findViewById(R.id.emprunte);
-        String emprunte_s = emprunte.getText().toString();
-
-        livre.setEmprunte(emprunte_s);
-
-        EditText prete = (EditText)findViewById(R.id.prete);
-        String prete_s = prete.getText().toString();
-
-        livre.setPrete(prete_s);
-
-        Intent intent = new Intent(this, ConfirmationAjout.class);
-        intent.putExtra("livre2",livre);
-
-        startActivity(intent);
-
-
-    }
-    public void annuler(View view){
-        Intent intent = new Intent(this, AccueilActivity.class);
-        startActivity(intent);
-
+    public void rechercheManuelle(View view){
+            Intent intent = new Intent(this, RechercheActivity.class);
+            startActivity(intent);
     }
 }

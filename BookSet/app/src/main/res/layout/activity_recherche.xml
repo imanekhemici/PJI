@@ -1,0 +1,79 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    tools:context="pji.example.pji.bookset.RechercheActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Book Set"
+        android:id="@+id/app_name"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@color/button_material_light"
+        android:layout_above="@+id/biblio"
+        android:elegantTextHeight="true"
+        android:textAlignment="center"
+        android:textIsSelectable="true"
+        android:textStyle="bold|normal|italic"
+        android:textSize="80px"
+        android:gravity="center"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true" />
+    <Button
+        android:layout_width="199dp"
+        android:layout_height="wrap_content"
+        android:text="Bibliothèque"
+        android:id="@+id/biblio"
+        android:layout_gravity="left|top"
+        android:layout_alignTop="@+id/ajout"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:padding="@dimen/abc_control_inset_material" />
+
+    <Button
+        android:layout_width="188dp"
+        android:layout_height="wrap_content"
+        android:text="@string/ajout"
+        android:id="@+id/ajout"
+        android:layout_gravity="right|top"
+        android:onClick="ajouterElement"
+        android:layout_marginTop="56dp"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/biblio"
+        android:layout_toEndOf="@+id/biblio" />
+
+    <EditText
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:hint="Titre"
+        android:id="@+id/titreRecherche"
+        android:gravity="center"
+        android:layout_below="@+id/biblio"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="91dp" />
+    <EditText
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:hint="Isbn"
+        android:id="@+id/isbnRecherche"
+        android:gravity="center"
+        android:layout_marginBottom="113dp"
+        android:layout_above="@+id/recherche"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Recherche"
+        android:onClick="rechercheResultat"
+        android:id="@+id/recherche"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/ajout"
+        android:layout_alignEnd="@+id/ajout" />
+
+
+</RelativeLayout>

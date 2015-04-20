@@ -8,22 +8,25 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
+import java.sql.SQLException;
+
 import pji.example.pji.implementation.Collection.Livre;
+import pji.example.pji.implementation.base.DatabaseManager;
 
 
-public class AjouterElementManSuite2Activity extends ActionBarActivity {
+public class RechercheActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ajouter_element_man_suite2);
+        setContentView(R.layout.activity_recherche);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_ajouter_element_man_suite2, menu);
+        getMenuInflater().inflate(R.menu.menu_recherche, menu);
         return true;
     }
 
@@ -41,31 +44,23 @@ public class AjouterElementManSuite2Activity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    public void rechercheResultat(View view) throws SQLException {
+        EditText titreedit = (EditText) findViewById(R.id.titreRecherche);
+        String titre = titreedit.getText().toString();
 
-    public void suiteMan(View view){
+        EditText isbnedit = (EditText) findViewById(R.id.isbnRecherche);
+        String isbn = isbnedit.getText().toString();
+        Livre livre = null;
 
-        Livre livre = (Livre)getIntent().getSerializableExtra("livre1");
+        if(titre != null){
+            livre = DatabaseManager.getInstance().getHelper().getLivreDao().findByTitle(titre);
 
-        EditText emprunte = (EditText)findViewById(R.id.emprunte);
-        String emprunte_s = emprunte.getText().toString();
-
-        livre.setEmprunte(emprunte_s);
-
-        EditText prete = (EditText)findViewById(R.id.prete);
-        String prete_s = prete.getText().toString();
-
-        livre.setPrete(prete_s);
-
-        Intent intent = new Intent(this, ConfirmationAjout.class);
-        intent.putExtra("livre2",livre);
-
-        startActivity(intent);
-
-
-    }
-    public void annuler(View view){
-        Intent intent = new Intent(this, AccueilActivity.class);
-        startActivity(intent);
-
+        }
+        if(isbn != null){
+            livre = DatabaseManager.getInstance().getHelper().getLivreDao().findByIsbn(isbn);
+        }
+            Intent intent = new Intent(this, ResulatActivity.class);
+            intent.putExtra("livre",livre);
+            startActivity(intent);
     }
 }

@@ -1,30 +1,28 @@
 package pji.example.pji.bookset;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
+
+import pji.example.pji.implementation.Collection.Livre;
 
 
-public class Confirmation extends ActionBarActivity {
+public class ResulatActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_confirmation);
-        String message = getIntent().getStringExtra("message");
-        TextView confirme = (TextView) findViewById(R.id.message);
-        confirme.setText(message);
+        setContentView(R.layout.activity_resulat);
+        Livre livre = (Livre) getIntent().getSerializableExtra("livre");
+        
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_confirmation, menu);
+        getMenuInflater().inflate(R.menu.menu_resulat, menu);
         return true;
     }
 
@@ -41,16 +39,5 @@ public class Confirmation extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-    public void ajouterAnouveau(View view){
-
-        Intent intent = new Intent(this, AjouterElementActivity.class);
-        startActivity(intent);
-    }
-
-    public void accueil(View view){
-
-        Intent intent = new Intent(this, AccueilActivity.class);
-        startActivity(intent);
     }
 }

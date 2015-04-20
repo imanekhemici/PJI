@@ -48,6 +48,18 @@
             android:name=".Confirmation"
             android:label="@string/title_activity_confirmation" >
         </activity>
+        <activity
+            android:name=".RechercheChoixActivity"
+            android:label="@string/title_activity_recherche_choix" >
+        </activity>
+        <activity
+            android:name=".RechercheActivity"
+            android:label="@string/title_activity_recherche" >
+        </activity>
+        <activity
+            android:name=".ResulatActivity"
+            android:label="@string/title_activity_resulat" >
+        </activity>
     </application>
 
 </manifest>

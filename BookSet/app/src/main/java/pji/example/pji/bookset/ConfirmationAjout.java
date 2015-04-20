@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import java.sql.SQLException;
 
@@ -19,6 +20,9 @@ public class ConfirmationAjout extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirmation_ajout);
+
+        TextView details = (TextView) findViewById(R.id.detailsLivre);
+        details.setText(afficher());
     }
 
 
@@ -55,9 +59,10 @@ public class ConfirmationAjout extends ActionBarActivity {
     public void ajouter(View view) throws SQLException {
         Livre livre =(Livre) getIntent().getSerializableExtra("livre2");
         Intent intent = new Intent(this, Confirmation.class);
-        Livre livreTest = DatabaseManager.getInstance().getHelper().getLivreDao().findByTitle(livre.getTitre());
 
-        if(livreTest == null){
+        boolean existe = DatabaseManager.getInstance().getHelper().getLivreDao().existe(livre.getTitre());
+
+        if(existe){
             intent.putExtra("message","Ce livre existe deja dans votre base");
             startActivity(intent);
 
@@ -65,7 +70,7 @@ public class ConfirmationAjout extends ActionBarActivity {
         else{
 
             DatabaseManager.getInstance().getHelper().getLivreDao().addData(livre);
-            intent.putExtra("message","Ce livre a été bien ajouté");
+            intent.putExtra("message", "Ce livre a été bien ajouté");
             startActivity(intent);
         }
 
@@ -80,7 +85,17 @@ public class ConfirmationAjout extends ActionBarActivity {
                 + "Auteur: "+livre.getAuteur()+"\n"
                 + "Isbn: "+livre.getIsbn()+"\n"
                 + "Genre: "+livre.getGenre()+"\n"
-                + "Langue: "+livre.get
+                + "Langue: "+livre.getLangue()+"\n"
+                + "Publié le: "+livre.getPublie_le()+"\n"
+                + "Note: "+livre.getNote()+"\n"
+                + "Note personelle"+livre.getNotePerso()+"\n"
+                + "Favoris: "+livre.isFavori()+"\n"
+                + "Lu: "+livre.isLu()+"\n"
+                + "M'appartient: "+livre.isMappartient()+"\n"
+                + "Emprunté: "+livre.getEmprunte()+"\n"
+                + "Prété à: "+livre.getPrete()+"\n"
+                ;
+        return details;
 
     }
 }

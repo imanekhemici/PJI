@@ -22,6 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import pji.example.pji.implementation.Collection.Livre;
+import pji.example.pji.implementation.CollectionBdd.LivreDaoImpl;
 import pji.example.pji.implementation.base.DatabaseManager;
 
 
@@ -123,28 +124,19 @@ public class AccueilActivity extends ActionBarActivity
         return super.onOptionsItemSelected(item);
     }
 
-
     public void afficherLivre(){
 
         //Recuperation de la liste des views
         ListView vue = (ListView) findViewById(R.id.listLivre);
 
+        LivreDaoImpl livreDao = DatabaseManager.getInstance().getHelper().getLivreDao();
+        if(livreDao != null) {
 
-        List<Livre> livres = DatabaseManager.getInstance().getHelper().getLivreDao().findAll();
-        List<HashMap<String, String>> liste = new ArrayList<HashMap<String, String>>();
-        HashMap<String, String> element;
-
-        if(livres.isEmpty()){
-
-
-
-        }
-        else{
+            List<Livre> livres = livreDao.findAll();
+            List<HashMap<String, String>> liste = new ArrayList<HashMap<String, String>>();
+            HashMap<String, String> element;
             //Pour chaque personne dans notre répertoire…
-
-
-
-            for(Livre livre : livres) {
+            for (Livre livre : livres) {
 
                 element = new HashMap<String, String>();
 
@@ -154,22 +146,20 @@ public class AccueilActivity extends ActionBarActivity
 
             }
 
+            ListAdapter adapter = new SimpleAdapter(this, liste, R.layout.afficher_livre,
+                    new String[]{"titre", "auteur"},
+                    new int[]{R.id.titreaff, R.id.auteuraff});
 
+            //Pour finir, on donne à la ListView le SimpleAdapter
 
+            vue.setAdapter(adapter);
+        }
+    }
+        public void recherche(View view){
+                Intent intent = new Intent(this,RechercheChoixActivity.class);
+                startActivity(intent);
         }
 
-
-
-
-        ListAdapter adapter = new SimpleAdapter(this, liste, R.layout.afficher_livre,
-                new String[] {"titre", "auteur"},
-                new int[] {R.id.titreaff, R.id.auteuraff });
-
-        //Pour finir, on donne à la ListView le SimpleAdapter
-
-        vue.setAdapter(adapter);
-
-    }
 
     /**
      * A placeholder fragment containing a simple view.

@@ -41,10 +41,10 @@ public class LivreDaoImpl extends BaseDaoImpl<Livre,Integer> implements  LivreDa
                 ;
     }
 
-    public Livre findByTitle(String titre){
+    public Livre findByTitle(String titre) throws SQLException {
         Livre livre = null;
-        List<Livre> all = null;
-        all =  findAll();
+        List<Livre> all = queryForAll();
+
         for(Livre livre1 : all){
             if(livre1.getTitre().equals(titre)){
                 livre = livre1;
@@ -52,6 +52,31 @@ public class LivreDaoImpl extends BaseDaoImpl<Livre,Integer> implements  LivreDa
 
         }
         return livre;
+
+    }
+    public Livre findByIsbn(String isbn) throws SQLException {
+        Livre livre = null;
+        List<Livre> all = queryForAll();
+
+        for(Livre livre1 : all){
+            if(livre1.getIsbn().equals(isbn)){
+                livre = livre1;
+            }
+
+        }
+        return livre;
+
+    }
+    public boolean existe(String titre) throws SQLException {
+        List<Livre> all = queryForAll();
+        boolean existe = false;
+        for(Livre livre1 : all){
+            if(livre1.getTitre().equals(titre)){
+                existe = true;
+            }
+
+        }
+        return existe;
 
     }
     public int addData(Livre livre) throws SQLException {

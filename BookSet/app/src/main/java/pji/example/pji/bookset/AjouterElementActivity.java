@@ -59,4 +59,8 @@ public class AjouterElementActivity extends ActionBarActivity {
         startActivity(intent);
     }
 
+    public void annuler(View view){
+        Intent intent = new Intent(this, AccueilActivity.class);
+        startActivity(intent);
+    }
 }
