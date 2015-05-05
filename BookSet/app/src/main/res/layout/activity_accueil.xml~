@@ -112,28 +112,10 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Recherche"
-            android:onClick="recherche"
-            android:id="@+id/recherche"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignRight="@+id/ajout"
-            android:layout_alignEnd="@+id/ajout" />
-
 	<FrameLayout
             android:id="@+id/content_frame"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_toEndOf="@+id/bd"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignRight="@+id/article"
-            android:layout_alignEnd="@+id/article">
-    </FrameLayout>
+            android:layout_height="match_parent"></FrameLayout>
 
     </RelativeLayout>
 

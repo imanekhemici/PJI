@@ -17,13 +17,13 @@
         <TextView android:id="@+id/titreaff"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:textSize="10dp"
+            android:textSize="180px"
             android:textStyle="bold"
             />
 
         <TextView android:id="@+id/auteuraff"
             android:layout_width="fill_parent"
-            android:layout_height="80dp"
+            android:layout_height="107dp"
             />
 
     </LinearLayout>

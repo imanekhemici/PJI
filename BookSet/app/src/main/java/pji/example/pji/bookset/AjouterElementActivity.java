@@ -2,6 +2,7 @@ package pji.example.pji.bookset;
 
 import android.content.Intent;
 import android.os.Bundle;
+
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -51,11 +52,10 @@ public class AjouterElementActivity extends ActionBarActivity {
         text = (EditText) findViewById(R.id.genre);
         String genre =  text.getText().toString();
 
-        Livre livre = new Livre(titre,auteur,isbn,genre);
+        Variable.livre = new Livre(titre,auteur,isbn,genre);
 
 
         Intent intent = new Intent(this, AjoutElementSuiteActivity.class);
-        intent.putExtra("livre",livre);
         startActivity(intent);
     }
 
@@ -63,4 +63,5 @@ public class AjouterElementActivity extends ActionBarActivity {
         Intent intent = new Intent(this, AccueilActivity.class);
         startActivity(intent);
     }
+
 }

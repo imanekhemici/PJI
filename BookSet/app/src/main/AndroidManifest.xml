@@ -36,30 +36,6 @@
             android:name=".AjoutElementSuiteActivity"
             android:label="@string/title_activity_ajout_element_suite" >
         </activity>
-        <activity
-            android:name=".AjouterElementManSuite2Activity"
-            android:label="@string/title_activity_ajouter_element_man_suite2" >
-        </activity>
-        <activity
-            android:name=".ConfirmationAjout"
-            android:label="@string/title_activity_confirmation_ajout" >
-        </activity>
-        <activity
-            android:name=".Confirmation"
-            android:label="@string/title_activity_confirmation" >
-        </activity>
-        <activity
-            android:name=".RechercheChoixActivity"
-            android:label="@string/title_activity_recherche_choix" >
-        </activity>
-        <activity
-            android:name=".RechercheActivity"
-            android:label="@string/title_activity_recherche" >
-        </activity>
-        <activity
-            android:name=".ResulatActivity"
-            android:label="@string/title_activity_resulat" >
-        </activity>
     </application>
 
 </manifest>

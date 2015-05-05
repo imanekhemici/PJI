@@ -1,42 +1,29 @@
 package pji.example.pji.bookset;
 
-
-
-
-import android.app.Fragment;
+import android.app.Activity;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
-import android.app.FragmentManager;
-import android.support.v4.view.GravityCompat;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import android.view.ViewGroup;
 
 import pji.example.pji.implementation.base.DatabaseManager;
-import pji.example.pji.implementation.Collection.Livre;
 
 
-
-public class AccueilActivity extends ActionBarActivity {
+public class AccueilActivity extends ActionBarActivity
+        implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
-
+    private NavigationDrawerFragment mNavigationDrawerFragment;
 
 	private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
@@ -45,14 +32,16 @@ public class AccueilActivity extends ActionBarActivity {
     private CharSequence mDrawerTitle;
     private String[] mSettingsTitles;
 
-
+    /**
+     * Used to store the last screen title. For use in {@link #restoreActionBar()}.
+     */
     private CharSequence mTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accueil);
-        DatabaseManager.init(this);
+
         mTitle = mDrawerTitle = getTitle().toString();
         mSettingsTitles = getResources().getStringArray(R.array.settings_array);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -104,8 +93,7 @@ public class AccueilActivity extends ActionBarActivity {
         }
 
         //Initialisation de la base de données
-
-        //afficherLivre();
+        DatabaseManager.init(this);
 
     }
     /** Called when the user clicks the Ajouter button */
@@ -113,6 +101,35 @@ public class AccueilActivity extends ActionBarActivity {
         Intent intent = new Intent(this, AjouterActivity.class);
         startActivity(intent);
 
+    }
+
+    @Override
+    public void onNavigationDrawerItemSelected(int position) {
+        // update the main content by replacing fragments
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
+                .commit();
+    }
+
+    public void onSectionAttached(int number) {
+        switch (number) {
+            case 1:
+                mTitle = getString(R.string.accueil);
+                break;
+            case 2:
+                mTitle = getString(R.string.title_section2);
+                break;
+            case 3:
+                mTitle = getString(R.string.title_section3);
+                break;
+        }
+    }
+
+    public void restoreActionBar() {
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowTitleEnabled(true);
+        actionBar.setTitle(mTitle);
     }
 
 
@@ -207,58 +224,5 @@ public class AccueilActivity extends ActionBarActivity {
         // Pass any configuration change to the drawer toggls
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
-
-    public void recherche(View view){
-        Intent intent = new Intent(this,RechercheChoixActivity.class);
-        startActivity(intent);
-    }
-    /*
-    public void afficherLivre(){
-
-        //Recuperation de la liste des views
-        ListView vue = (ListView) findViewById(R.id.listLivre);
-
-
-        List<Livre> livres = DatabaseManager.getInstance().getHelper().getLivreDao().findAll();
-        List<HashMap<String, String>> liste = new ArrayList<HashMap<String, String>>();
-        HashMap<String, String> element;
-
-        if(livres.isEmpty()){
-
-
-
-        }
-        else{
-            //Pour chaque personne dans notre répertoire…
-
-
-
-            for(Livre livre : livres) {
-
-                element = new HashMap<String, String>();
-
-                element.put("titre", livre.getTitre());
-                element.put("auteur", livre.getAuteur());
-                liste.add(element);
-
-            }
-
-
-
-        }
-
-
-
-
-        ListAdapter adapter = new SimpleAdapter(this, liste, R.layout.afficher_livre,
-                new String[] {"titre", "auteur"},
-                new int[] {R.id.titreaff, R.id.auteuraff });
-
-        //Pour finir, on donne à la ListView le SimpleAdapter
-
-        vue.setAdapter(adapter);
-
-    }
-    */
 
 }

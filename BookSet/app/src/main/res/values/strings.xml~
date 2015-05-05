@@ -5,10 +5,6 @@
     <string name="favoris">Favoris</string>
     <string name="panier">Panier</string>
 
-    <string name="drawer_open">Open navigation drawer</string>
-    <string name="drawer_close">Close navigation drawer</string>
-    <string name="app_not_available">Sorry, there\'s no web browser available</string>
-
 	<string name="action_settings">Settings</string>
 
 
@@ -17,10 +13,10 @@
     <string name="scan">Scanner</string>
     <string name="livre">Livres</string>
     <string name="ajout">Ajouter</string>
-    <string name="title_activity_activity_ajouter_element">activity_ajouter_element</string>
+        <string name="title_activity_activity_ajouter_element">activity_ajouter_element</string>
 
-    <string name="title_activity_ajouter_element">Ajout d\'élément(s)</string>
-    <string name="title_activity_ajouter_element_activity">Complèter</string>
+        <string name="title_activity_ajouter_element">Ajout d\'élément(s)</string>
+        <string name="title_activity_ajouter_element_activity">Complèter</string>
     <string name="annuler">Annuler</string>
     <string name="suivant">Suivant</string>
 
@@ -36,12 +32,7 @@
         <item>Panier</item>
 
     </string-array>
-
-    <string name="title_activity_ajouter_element_man_suite2">ajouter_element_man_suite2</string>
-    <string name="title_activity_confirmation_ajout">ConfirmationAjout</string>
-    <string name="title_activity_confirmation">Confirmation</string>
-    <string name="title_activity_recherche_choix">RechercheChoixActivity</string>
-    <string name="title_activity_recherche">RechercheActivity</string>
-    <string name="title_activity_resulat">ResulatActivity</string>
-
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="app_not_available">Sorry, there\'s no web browser available</string>
 </resources>

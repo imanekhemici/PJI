@@ -1,10 +1,10 @@
 package pji.example.pji.bookset;
 
-import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.content.Intent;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import pji.example.pji.implementation.Collection.Livre;
+
 
 
 public class AjoutElementSuiteActivity extends ActionBarActivity {
@@ -52,40 +53,40 @@ public class AjoutElementSuiteActivity extends ActionBarActivity {
         Livre livre = (Livre) getIntent().getSerializableExtra("livre");
 
 
-            EditText publie = (EditText) findViewById(R.id.publie);
-            String publie_s = publie.getText().toString();
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
-            try {
-                Date d = sdf.parse(publie_s);
-                livre.setPublie_le(d);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+        EditText publie = (EditText) findViewById(R.id.publie);
+        String publie_s = publie.getText().toString();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
+        try {
+            Date d = sdf.parse(publie_s);
+            livre.setPublie_le(d);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
-            RatingBar note_tex = (RatingBar) findViewById(R.id.note);
-            float note = note_tex.getRating();
+        RatingBar note_tex = (RatingBar) findViewById(R.id.note);
+        float note = note_tex.getRating();
 
-            livre.setNote(note);
+        livre.setNote(note);
 
-            RatingBar note_perso_tex = (RatingBar) findViewById(R.id.noteperso);
-            float noteperso = note_perso_tex.getRating();
+        RatingBar note_perso_tex = (RatingBar) findViewById(R.id.noteperso);
+        float noteperso = note_perso_tex.getRating();
 
-            livre.setNotePerso(noteperso);
+        livre.setNotePerso(noteperso);
 
-            CheckBox favoris = (CheckBox) findViewById(R.id.favoris);
-            boolean favori = favoris.isChecked();
+        CheckBox favoris = (CheckBox) findViewById(R.id.favoris);
+        boolean favori = favoris.isChecked();
 
-            livre.setFavori(favori);
+        livre.setFavori(favori);
 
-            CheckBox lu_c = (CheckBox) findViewById(R.id.lu);
-            boolean lu = lu_c.isChecked();
+        CheckBox lu_c = (CheckBox) findViewById(R.id.lu);
+        boolean lu = lu_c.isChecked();
 
-            livre.setLu(lu);
+        livre.setLu(lu);
 
-            CheckBox mappartient_c = (CheckBox) findViewById(R.id.mappartient);
-            boolean mappartient = mappartient_c.isChecked();
+        CheckBox mappartient_c = (CheckBox) findViewById(R.id.mappartient);
+        boolean mappartient = mappartient_c.isChecked();
 
-            livre.setMappartient(mappartient);
+        livre.setMappartient(mappartient);
 
         Intent intent = new Intent(this, AjouterElementManSuite2Activity.class);
 

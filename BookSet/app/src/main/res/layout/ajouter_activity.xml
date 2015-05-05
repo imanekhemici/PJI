@@ -28,7 +28,6 @@
             android:layout_toRightOf="@+id/biblio"
             android:layout_toEndOf="@+id/biblio" />
 
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -55,7 +54,7 @@
             android:padding="0dp"
             android:onClick="ajouter"
             android:id="@+id/button"
-            android:layout_above="@+id/scan"
+            android:layout_above="@+id/button2"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="18dp" />
 
@@ -64,24 +63,49 @@
             android:layout_height="wrap_content"
             android:text="@string/scan"
             android:padding="0dp"
-             android:id="@+id/scan"
+
+            android:id="@+id/button2"
             android:layout_centerVertical="true"
             android:layout_alignRight="@+id/button"
             android:layout_alignEnd="@+id/button"
             android:layout_alignLeft="@+id/button"
             android:layout_alignStart="@+id/button" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Recherche"
-        android:onClick="recherche"
-        android:id="@+id/recherche"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/ajout"
-        android:layout_alignEnd="@+id/ajout" />
+        <Button
+           android:layout_width="200dp"
+           android:layout_height="wrap_content"
+            android:text="@string/manuel"
+            android:padding="0dp"
+            android:onClick="ajouter"
+            android:id="@+id/button"
+            android:layout_above="@+id/scan"
+           android:layout_centerHorizontal="true"
+           android:layout_marginBottom="18dp" />
+
+        <Button
+            android:layout_width="165dp"
+            android:layout_height="wrap_content"
+            android:text="@string/scan"
+            android:padding="0dp"
+            android:id="@+id/scan"
+            android:layout_centerVertical="true"
+            android:layout_alignRight="@+id/button"
+            android:layout_alignEnd="@+id/button"
+            android:layout_alignLeft="@+id/button"
+            android:layout_alignStart="@+id/button" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Recherche"
+            android:onClick="recherche"
+            android:id="@+id/recherche"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignRight="@+id/ajout"
+            android:layout_alignEnd="@+id/ajout" />
+
 
 </RelativeLayout>
 

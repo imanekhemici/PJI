@@ -8,7 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 
-public class RechercheChoixActivity extends ActionBarActivity {
+public class    RechercheChoixActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

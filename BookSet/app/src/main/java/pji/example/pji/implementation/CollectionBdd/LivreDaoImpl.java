@@ -1,9 +1,13 @@
 package pji.example.pji.implementation.CollectionBdd;
 
+import android.database.Cursor;
+import android.widget.ListView;
+
 import com.j256.ormlite.dao.BaseDaoImpl;
 import com.j256.ormlite.support.ConnectionSource;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import pji.example.pji.implementation.Collection.Livre;
@@ -21,7 +25,7 @@ public class LivreDaoImpl extends BaseDaoImpl<Livre,Integer> implements  LivreDa
     }
 
     public List findAll() {
-        List livres = null;
+        List livres = new ArrayList();
         try {
             livres = queryForAll();
         }catch(SQLException e) {
@@ -30,8 +34,41 @@ public class LivreDaoImpl extends BaseDaoImpl<Livre,Integer> implements  LivreDa
         return livres;
     }
 
+    public List findAllPanier(){
+        List<Livre> resultat = new ArrayList();
+        List<Livre> all = new ArrayList();
+        all =  findAll();
+        for(Livre livre1 : all){
+            if(livre1.isPanier() == true){
+                resultat.add(livre1);
+            }
+
+        }
+        return resultat;
+
+    }
+
+    public List findAllFavoris(){
+
+        List<Livre> resultat = new ArrayList();
+        List<Livre> all = new ArrayList();
+        all =  findAll();
+        for(Livre livre1 : all){
+            if(livre1.isFavori() == true){
+                resultat.add(livre1);
+            }
+
+        }
+        return resultat;
+    }
+
+   /* public void supprimer (String titre){
+
+    }*/
+
+
     public Livre findById(int id) {
-        Livre livres = null;
+        Livre livres = new Livre();
         try {
             livres = (Livre) queryForId(id);
         }catch(SQLException e) {
@@ -41,10 +78,10 @@ public class LivreDaoImpl extends BaseDaoImpl<Livre,Integer> implements  LivreDa
                 ;
     }
 
-    public Livre findByTitle(String titre) throws SQLException {
-        Livre livre = null;
-        List<Livre> all = queryForAll();
-
+    public Livre findByTitle(String titre){
+        Livre livre = new Livre();
+        List<Livre> all = new ArrayList();
+        all =  findAll();
         for(Livre livre1 : all){
             if(livre1.getTitre().equals(titre)){
                 livre = livre1;
@@ -54,8 +91,9 @@ public class LivreDaoImpl extends BaseDaoImpl<Livre,Integer> implements  LivreDa
         return livre;
 
     }
+
     public Livre findByIsbn(String isbn) throws SQLException {
-        Livre livre = null;
+        Livre livre = new Livre();
         List<Livre> all = queryForAll();
 
         for(Livre livre1 : all){
@@ -82,5 +120,7 @@ public class LivreDaoImpl extends BaseDaoImpl<Livre,Integer> implements  LivreDa
     public int addData(Livre livre) throws SQLException {
         return this.create(livre);
     }
+
+
 
 }

@@ -15,7 +15,7 @@ import pji.example.pji.implementation.CollectionBdd.LivreDaoImpl;
 public class DatabaseBookSet extends OrmLiteSqliteOpenHelper {
 
     private static final String DATABASE_NAME = "bookset.db";
-    private static final int DATABASE_VERSION = 7;
+    private static final int DATABASE_VERSION = 5;
 
     private LivreDaoImpl livresDao = null;
 
